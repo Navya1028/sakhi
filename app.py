@@ -253,7 +253,7 @@ def main():
         st.caption("Driver score = mean of schooling 10+, literacy and sanitation (lower = more vulnerable); hygienic use is kept "
                    "out of the score and used to check it. Severity = quartile within the state. The main gap is the district's "
                    "biggest deficit relative to other districts in the state, so rankings are relative, not absolute.")
-        rho = t["driver_score"].corr(t["hygienic"], method="spearman")
+        rho = t["driver_score"].rank().corr(t["hygienic"].rank())
         c = st.columns(5)
         c[0].metric("Districts ranked", len(t))
         c[1].metric("Below state hygienic-use average", int((t["hygienic"] < avg["hygienic"]).sum()))
